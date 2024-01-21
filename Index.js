@@ -1,7 +1,7 @@
 const express = require('express');
 const mysql = require('mysql2');
-// const mentorRoutes = require('./routes/mentor');
-// const courseRoutes = require('./routes/course');
+const mentorRoutes = require('./routes/mentor');
+const courseRoutes = require('./routes/course');
 
 const app = express();
 const port = 8080;
@@ -25,12 +25,12 @@ connection.connect((err) => {
 
 // Use mentorRoutes middleware for specific path
 
-// app.use('/', mentorRoutes);
+app.use('/', mentorRoutes);
 
 
 
 app.get('/home', (req, res) => {
-    res.send('he ji ji'); 
+    res.send('welcome to home page!!'); 
 })
 
 
