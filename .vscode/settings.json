@@ -1,0 +1,21 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "test",
+            "database": "root",
+            "username": "pass123"
+        }
+    ],
+    "dataworkspace.excludedProjects": [
+        "Demo_table/Demo_table.sqlproj",
+        "no/no.sqlproj"
+    ]
+}
