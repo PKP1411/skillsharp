@@ -1,42 +1,38 @@
+// index.js
 const express = require('express');
-const mysql = require('mysql2');
-const mentorRoutes = require('./routes/mentor');
-const courseRoutes = require('./routes/course');
+const bodyParser = require('body-parser');
+
+const mentorRoutes = require('./routes/mentorRoutes');
+const moduleRoutes = require('./routes/moduleRoutes');
+const courseRoutes = require('./routes/courseRoutes');
+const userRoutes = require('./routes/userRoutes');
+const bookingRoutes = require('./routes/bookingRoutes'); 
+const authRoutes = require('./routes/authRoutes')
+const learnerRoutes = require('./routes/learnerRoutes')
+
 
 const app = express();
-const port = 8080;
+const port = 3000;
 
-// MySQL Database Connection
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'pass123',
-    database: 'skillsharp1'
-});
-
-// Connect to the database
-connection.connect((err) => {
-    if (err) {
-        console.error('Error connecting to MySQL:', err);
-        return;
-    }
-    console.log('Connected to MySQL database');
-});
-
-// Use mentorRoutes middleware for specific path
-
-app.use('/', mentorRoutes);
+app.use(bodyParser.json());
 
 
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/home', (req, res) => {
-    res.send('welcome to home page!!'); 
-})
+app.use('/mentors', mentorRoutes);
+app.use('/learners',  learnerRoutes);
+app.use('/courses', courseRoutes); 
+app.use('/modules', moduleRoutes);
+app.use('/users', userRoutes);
+app.use('/learner-bookings', bookingRoutes);
+app.use('/auth', authRoutes);
 
+app.get('/', (req, res) => {
+    res.send('home page'); 
+ })
 
-// Start the server
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
 
-module.exports = connection;
+

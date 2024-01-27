@@ -1,68 +1,32 @@
 const mysql = require("mysql2");
 
-var mysqlconnection = mysql.createConnection({
+const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'pass123',
     database: 'skillsharp1'
-})
+});
 
-
-var connection = mysqlconnection.connect((err) => {
+// Connect to the database
+connection.connect((err) => {
     if (err) {
-        console.log(err); 
-        console.log('error in connection' + JSON.stringify(err, undefined, 2)) ;
+        console.error('Error connecting to MySQL:', err);
+        return;
     }
-    else {
-        console.log('db connect successfully');
-    }
-})
+    console.log('Connected to MySQL database');
+});
 
-
+module.exports = connection;
 
 
  
 
 
-// #1
-// const user_type = "mentor";
-// const user_type_select_query = `SELECT * FROM user_profile WHERE profiletype = ?;`
-// mysqlconnection.query(user_type_select_query, [user_type], (err, results) => {
-//     if (err) {
-//         console.error("error execution query: ", err);
-//         return;
-//     }
-//     console.log('query results:', results);
-// })
+ 
 
 
-// #2
-// 
-// mysqlconnection.query(select_all_course , (err, results) => {
-//     if (err) {
-//         console.error("error execution query: ", err);
-//         return;
-//     }
-//     console.log('query results:', results);
-// })
-
-
-// #3
-// courseId = 1;
-// const select_all_module_from_course = `
-//     SELECT module.*, course.name AS course_name
-//     FROM module
-//     JOIN course ON module.course_id = course.id
-//     WHERE module.course_id = ?;
-//   `;
-// mysqlconnection.query(sql, [courseId], (err, results) => {
-//     if (err) {
-//         console.error('Error executing MySQL query:', err);
-//         res.status(500).send('Internal Server Error');
-//         return;
-//     }
-//     console.log('query results:', results);
-// });
+ 
+ 
 
 
 // #4
